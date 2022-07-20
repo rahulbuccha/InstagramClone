@@ -78,6 +78,22 @@ extension HomeChatViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     
+    //for onClick Display for the next controllers
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell =  friends[indexPath.row]
+        performSegue(withIdentifier: "message", sender: cell)
+        
+    }
+    
+    // performing segue b/w two controllers
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! MessagesViewController
+        let selectedTerm = sender as! String
+        vc.term = selectedTerm
+
+    }
+    
+    
 }
 // Extension for the SearchBar to filter elements
 extension HomeChatViewController : UISearchBarDelegate{
